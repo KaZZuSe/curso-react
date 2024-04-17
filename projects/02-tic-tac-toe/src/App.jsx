@@ -1,44 +1,10 @@
 import { useState } from 'react'
-
-const TURNS = {
-  X: '❌',
-  O: '⭕'
-}
-
-const Square = ({ children, isSelected, updateBoard, index }) => {
-  const className = `square ${isSelected ? 'is-selected' : ''}`
-  const handleClick = () => updateBoard(index)
-  return (
-    <div className={className} onClick={handleClick}>
-      {children}
-    </div>
-  )
-}
-
-const WINNING_COMBINATIONS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
-
+import { TURNS } from './constants.js'
+import { Square } from './components/Square.jsx'
+import { checkWinner } from './logic/board.js'
+import { WinnerModal } from './components/WinnerModal.jsx'
 
 function App() {
-  const checkWinner = (boardCheck) => {
-    for (const [a, b, c] of WINNING_COMBINATIONS) {
-      if (boardCheck[a] &&
-        boardCheck[a] === boardCheck[b] &&
-        boardCheck[a] === boardCheck[c]
-      ) {
-        return boardCheck[a]
-      }
-    }
-    return null
-  }
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
@@ -81,26 +47,7 @@ function App() {
         <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
         <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
       </section>
-      {
-        winner !== null && (
-          <section className='winner'>
-            <div className='text'>
-              <h2>
-                {
-                  winner === false
-                    ? 'Empate'
-                    : 'Gana ' + winner
-                }
-              </h2>
-              <header className='win'>
-                {winner && <Square>{winner}</Square>}
-              </header>
-              <footer>
-                <button onClick={resetGame}>Empezarde nuevo</button>
-              </footer>
-            </div>
-          </section>
-        )}
+      <WinnerModal resetGame={resetGame} winner={winner} />
     </main>
 
   )
