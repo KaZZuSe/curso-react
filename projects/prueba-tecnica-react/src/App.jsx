@@ -18,16 +18,18 @@ export default function App() {
 
   }, [])
   useEffect(() => {
-    const threeFirstWords = fact
+    if (!fact) return
+
+    const threeFirstWords = fact.split(' ', 3).join(' ')
+
     fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
-      .then(response => response.json())
-      .then(data => {
-        const {_id} = data
+      .then(res => res.json())
+      .then(response => {
+        const { _id } = response
         const url = `/cat/${_id}/says/${threeFirstWords}`
         setImageUrl(url)
       })
-
-  }, {fact})
+  }, [fact])
   return (
     <main>
       <h1>Api de un facto de gatito junto a una imagen</h1>
