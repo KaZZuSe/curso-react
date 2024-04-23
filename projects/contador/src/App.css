@@ -1,0 +1,7 @@
+.contador{
+  border: 5px solid black;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
