@@ -1,5 +1,5 @@
 import '../css/Boton.css'
-function Boton ( { children, handleClick}) {
+function Boton ( { children, handleClick } ) {
 
     return (
         /* coge como valor el children */
@@ -8,4 +8,12 @@ function Boton ( { children, handleClick}) {
         </div>
     )
 }
+/* 
+function Boton (props)  {
+    return (
+        <div className="boton" onClick={() => props.handleClick(props.children)}>
+            {props.children}
+        </div>
+    )
+} */
 export default Boton;
