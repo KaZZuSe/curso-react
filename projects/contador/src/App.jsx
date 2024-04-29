@@ -3,15 +3,15 @@ import Boton from '../componentes/Boton.jsx';
 import './App.css'
 
 function App() {
-
-  
   const [numClics, setNumClics] = useState(0)
-  const incrementar = () => {
-    setNumClics(numClics + 1)
-  }
-  const reset = () => {
-    setNumClics(0)
-  }
+
+const incrementar = () => {
+  setNumClics(numClics + 1)
+}
+
+const reset = () => {
+  setNumClics(0)
+}
 
   return (
     <>
