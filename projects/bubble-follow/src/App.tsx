@@ -1,6 +1,6 @@
-import * as React from 'react'
 import useMeasure from 'react-use-measure'
-import { useTrail, animated } from '@react-spring/web'
+import { useState } from 'react'
+import { useTrail, animated} from '@react-spring/web'
 
 import styles from './styles.module.css'
 
@@ -15,13 +15,20 @@ export default function App() {
     config: i === 0 ? fast : slow,
   }))
   const [ref, { left, top }] = useMeasure()
+  const [isHovered, setIsHovered] = useState(false)
 
-  const handleMouseMove = e => {
-    api.start({ xy: [e.clientX - left, e.clientY - top] })
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+
+  const handleMouseMove = (e:any) => {
+    if (isHovered) {
+      api.start({ xy: [e.clientX - left, e.clientY - top] })
+    }
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onMouseMove={handleMouseMove}>
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
         <filter id="goo">
           <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
@@ -31,9 +38,9 @@ export default function App() {
           />
         </filter>
       </svg>
-      <div ref={ref} className={styles.hooksMain} onMouseMove={handleMouseMove}>
+      <div ref={ref} className={styles.hooksMain}>
         {trail.map((props, index) => (
-          <animated.div key={index} style={{ transform: props.xy.to(trans) }} />
+          <animated.div key={index} style={{ transform: props.xy.to(trans) }} onMouseEnter={handleMouseEnter} />
         ))}
       </div>
     </div>
