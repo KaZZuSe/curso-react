@@ -1,6 +1,6 @@
 import useMeasure from 'react-use-measure'
 import { useState } from 'react'
-import { useTrail, animated} from '@react-spring/web'
+import { useTrail, animated } from '@react-spring/web'
 
 import styles from './styles.module.css'
 
@@ -10,7 +10,7 @@ const trans = (x: number, y: number) =>
   `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`
 
 export default function App() {
-  const [trail, api] = useTrail(3, i => ({
+  const [trail, api] = useTrail(2, i => ({
     xy: [0, 0],
     config: i === 0 ? fast : slow,
   }))
@@ -21,7 +21,7 @@ export default function App() {
     setIsHovered(true)
   }
 
-  const handleMouseMove = (e:any) => {
+  const handleMouseMove = (e: any) => {
     if (isHovered) {
       api.start({ xy: [e.clientX - left, e.clientY - top] })
     }

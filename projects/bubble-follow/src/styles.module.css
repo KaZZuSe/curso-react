@@ -1,11 +1,11 @@
 .hooksMain > div {
   position: absolute;
-  will-change: transform;
+/*   will-change: transform; */
   border-radius: 50%;
   background: purple;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   opacity: 1;
-  border: 22px solid rgba(255, 255, 255, 0.5);
+  border: 22px solid rgba(255, 255, 255, 0.75);
 }
 
 .hooksMain > div:nth-child(1) {
@@ -14,15 +14,15 @@
 }
 
 .hooksMain > div:nth-child(2) {
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
 }
 
-.hooksMain > div:nth-child(3) {
-  width: 600px;
-  height: 600px;
+/* .hooksMain > div:nth-child(3) {
+  width: 800px;
+  height: 800px;
 }
-
+ */
 .hooksMain > div::after {
   content: '';
   position: absolute;
@@ -31,7 +31,6 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.8);
 }
 
 .hooksMain > div:nth-child(2)::after {
